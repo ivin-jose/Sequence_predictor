@@ -1,4 +1,6 @@
 import random
+from sklearn.preprocessing import MinMaxScaler
+
 
 ''' CREATEING DATASET '''
 
@@ -27,6 +29,7 @@ testing_data = dataset[split_count:]
 
 ''' Divide the input and output from the '''
 
+
 # print(training_data)
 x_train = [data[0] for data in training_data]
 y_train = [data[1] for data in training_data]
@@ -35,7 +38,14 @@ y_train = [data[1] for data in training_data]
 x_test = [data[0] for data in testing_data]
 y_test = [data[1] for data in testing_data]
 
-# print(y_test, y_train)
 
+''' Normalizing the Dataset '''
 
+scaler = MinMaxScaler()
+
+x_train_scaled = scaler.fit_transform(x_train)
+y_train_scaled = scaler.fit_transform([[i] for i in y_train])
+
+x_test_scaled = scaler.fit_transform(x_test)
+y_test_scaled = scaler.fit_transform([[i] for i in y_test])
 
