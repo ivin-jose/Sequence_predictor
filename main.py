@@ -96,5 +96,23 @@ loss,  mae = model.evaluate(x_test, y_test)
 print(f"Test Loss: {loss}, Test MAE: {mae}")
 
 
+y_min = 0
+y_max = 100
+
+# Input sequence
+input_sequence = np.array([[41, 42, 43]])
+''' Normalize input'''
+input_sequence = (input_sequence - y_min) / (y_max - y_min)
+input_sequence = input_sequence.reshape((1, 3))
+
+prediction = model.predict(input_sequence)
+# De-normalize
+
+
+prediction_original = prediction * (y_max - y_min) + y_min
+print("De-Normalized Predictions: ", np.round(prediction_original))
+
+# # model.save("sequence_model.h5")
+
 
 
