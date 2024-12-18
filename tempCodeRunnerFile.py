@@ -1,0 +1,1 @@
+print(x_test[:5])
